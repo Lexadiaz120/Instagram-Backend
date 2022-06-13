@@ -1,7 +1,7 @@
 # Instagram-Backend
 ![image](https://user-images.githubusercontent.com/64269731/173323401-f1880d1f-d8ab-414b-b638-aaece66e0a31.png)
 
-Backend Part of Instaram app for Hackaboss bootcamp 
+Backend Part of Instaram app for Hackaboss bootcamp.
 Down you can see all backend  routes 
 
 | Method | Path |  
