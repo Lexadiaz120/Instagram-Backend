@@ -24,7 +24,6 @@ app.post('/likephoto/:photo_id', validateAuth, createLike)
 app.post('/posts', validateAuth, createPhotos)
 app.post('/login', loginUser)
 app.post('/newuser', registerUser)
-app.post('/postphoto', validateAuth, createPhotos)
 app.patch('/users/:idUser', validateAuth , editUser )
 app.delete('/deletelike/:like_id', removeLikes)
 app.use((req, res, next) => {
