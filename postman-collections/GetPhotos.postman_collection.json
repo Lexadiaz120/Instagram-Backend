@@ -1,0 +1,35 @@
+{
+	"info": {
+		"_postman_id": "e2ae1222-683a-47e8-a2d0-e9d968a4ff93",
+		"name": "GetPhotos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17410401"
+	},
+	"item": [
+		{
+			"name": "Getphotosbydescription",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/photos?description=Una noche muy bonita",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"photos"
+					],
+					"query": [
+						{
+							"key": "description",
+							"value": "Una noche muy bonita"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
