@@ -1,3 +1,2 @@
-const createLike = require('./createLike')
-const removeLikes = require('./removeLikes')
-module.exports = {createLike, removeLikes}
+const Like = require('./Like')
+module.exports = {Like}

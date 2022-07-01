@@ -1,21 +1,18 @@
-const { selectUserById, updateUserById } = require("../../repositories/users") 
+const {generateError} = require('../../helpers')
+const {selectUserById, updateUserById} = require('../../repositories/users')
+const editUserSchema = require('../../schemas/users/editUserSchema')
+const idUserSchema = require('../../schemas/users/idUserSchema')
+
 const editUser = async (req, res, next) => {
   try {
     const {idUser} = req.params
-    const userDB = await selectUserById(idUser) 
-    console.log(userDB)
+    const userDB = await selectUserById(idUser)
     if (!userDB) {
-      const error = new Error('User does not exists')
-      error.statusCode = 404
-      throw error
+      throw generateError('User doesn´t exists', 400)
     }
-    const userId = req.auth.id; 
-    console.log(userId, "id de usuario authorizado"); 
-    console.log(userDB.id, "id del usuario que pedimos query")
+    const userId = req.auth.id
     if (userDB.id !== userId) {
-      const error = new Error('User does not exists')
-      error.statusCode = 404
-      throw error
+      throw generateError("You cant update someone else's entry", 400)
     }
     await updateUserById({...userDB, ...req.body})
     res.status(200).send({status: 'ok', message: 'User updated'})

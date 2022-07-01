@@ -1,11 +1,13 @@
-const {processAndSaveImage, uploadImage} = require('../../helpers')
+const {uploadImage} = require('../../helpers')
 const insertPhotos = require('../../repositories/photos/insertPhotos')
+const createPhotoSchema = require('../../schemas/photos/createPhotoSchema')
+
 const createPhotos = async (req, res, next) => {
   try {
     let user_id = req.auth.id
+    await createPhotoSchema.validateAsync(req.body)
     const {description_photo} = req.body
     const {foto} = req.files
-    console.log(foto)
     const name_photo = await uploadImage(foto?.data)
     const insertId = await insertPhotos({
       name_photo,

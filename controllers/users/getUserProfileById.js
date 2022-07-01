@@ -8,7 +8,6 @@ const getUserProfileById = async (req, res, next) => {
       'SELECT ph.name_photo, u.username FROM photo ph INNER JOIN users u ON ph.user_id = u.id WHERE u.id = ?',
       [id]
     )
-    console.log(user)
     res.status(200).send({status: 'ok', data: user})
     return user
   } catch (error) {

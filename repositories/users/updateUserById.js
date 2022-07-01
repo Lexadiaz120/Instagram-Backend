@@ -1,15 +1,17 @@
-const getPool = require("../../database/getPool");
+const getPool = require('../../database/getPool')
+const bcrypt = require('bcrypt')
 
-const updateUserById = async ({ username, email, passwd, id }) => {
+const updateUserById = async ({username, email, passwd, id}) => {
+  const pool = getPool()
 
-    const pool = getPool();
+  passwd = await bcrypt.hash(passwd, 10)
 
-    const [{ affectedRows }] = await pool.query(
-        "UPDATE users SET username = ?, email = ?, passwd = ? WHERE id = ?",
-        [username, email, passwd, id ]
-    );
+  const [{affectedRows}] = await pool.query(
+    'UPDATE users SET  email = ?, passwd = ? WHERE id = ?',
+    [email, passwd, id]
+  )
 
-    return affectedRows;
-};
+  return affectedRows
+}
 
-module.exports = updateUserById;
+module.exports = updateUserById

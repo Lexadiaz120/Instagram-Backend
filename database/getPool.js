@@ -1,5 +1,6 @@
-const mysql = require('mysql2/promise')
 require('dotenv').config()
+const mysql = require('mysql2/promise')
+
 const {
   DATABASE_HOST,
   DATABASE_PORT,
@@ -7,17 +8,18 @@ const {
   DATABASE_PASSWORD,
   DATABASE_NAME,
 } = process.env
+
 let pool
-console.log(DATABASE_USER, 'soy user')
+
 const getPool = () => {
   /** Si no hay un pool ya creado, llamamos a createPool con los datos requeridos para crear uno */
   if (!pool) {
     pool = mysql?.createPool({
-      host: DATABASE_HOST,
-      port: DATABASE_PORT,
-      user: DATABASE_USER,
-      password: DATABASE_PASSWORD,
-      database: DATABASE_NAME,
+      host: 'localhost',
+      port: '3306',
+      user: 'root',
+      password: 'Motinmotin120$',
+      database: 'instagram_app',
       timezone: 'Z',
       connectionLimit: 10,
     })

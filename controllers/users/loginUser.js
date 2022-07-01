@@ -1,8 +1,11 @@
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const generateError = require('../../helpers/generateError')
 const {selectUserByEmail} = require('../../repositories/users')
+const {loginUserSchema} = require('../../schemas')
 const loginUser = async (req, res, next) => {
   try {
+    await loginUserSchema.validateAsync(req.body)
     const {email, passwd} = req.body
     const user = await selectUserByEmail(email)
     const encryptedPassword = user?.passwd
