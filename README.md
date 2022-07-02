@@ -69,16 +69,16 @@ Form data
 - foto 
 Post| /login   Log in.   
 - Log in user 
- Body (JSON): 
+Body (JSON): 
 - email 
 - passwd
 Returns JWT token
-post|    /newuser Registrate new user
+post|  /newuser Registrate new user
 Body (JSON): 
 - username
 - email
 - passwd
-path|   /users/:idUser Edit user profile.  WARNING: YOU NEED TO BE LOGGED FOR USE THIS ENDPOINT!
+path|  /users/:idUser Edit user profile.  WARNING: YOU NEED TO BE LOGGED FOR USE THIS ENDPOINT!
 Req.params  
 - idUser
 Get| /comments  
