@@ -11,8 +11,9 @@ const loginUser = async (req, res, next) => {
     const encryptedPassword = user?.passwd
     const isLoginValid =
       user && (await bcrypt.compare(passwd, encryptedPassword))
+    console.log(isLoginValid)
     if (!isLoginValid) {
-      generateError('Wrong password or email', 400)
+      throw generateError('Wrong password or email', 400)
     }
     const tokenPayload = {
       id: user.id,

@@ -32,7 +32,6 @@ app.post('/newuser', registerUser)
 app.get('/comments', getComments)
 app.get('/comments/:commentId', getCommentById)
 app.post('/comments/:photoId', validateAuth, createComment)
-app.delete('/comments/:commentId', validateAuth, removeCommentById)
 app.patch('/users/:idUser', validateAuth, editUser)
 app.use((req, res, next) => {
   throw generateError(
