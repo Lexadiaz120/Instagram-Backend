@@ -7,9 +7,9 @@ const populateDB = async () => {
     console.log('Insertando datos en tabla users...')
 
     await pool.query(
-      `INSERT INTO users(username, email, passwd) VALUES 
-            ("BATMENT", "musoratogeludi@gmail.com", 1324657), 
-            ("SPIDERMAN", "ilikeflyes@gmail.com", 798465);
+      `INSERT INTO users(username, email, passwd, avatar) VALUES 
+            ("BATMENT", "musoratogeludi@gmail.com", 1324657, "12521512.jpg"), 
+            ("SPIDERMAN", "ilikeflyes@gmail.com", 798465, "532532.jpg");
         `
     )
 
