@@ -11,22 +11,19 @@ const {
 
 let pool
 
-const getPool = () => {
-  /** Si no hay un pool ya creado, llamamos a createPool con los datos requeridos para crear uno */
-  if (!pool) {
-    pool = mysql?.createPool({
-      host: 'localhost',
-      port: '3306',
-      user: 'root',
-      password: 'Motinmotin120$',
-      database: 'instagram_app',
-      timezone: 'Z',
-      connectionLimit: 10,
-    })
+const getPool = () => {   
+  if(!pool){
+      pool = mysql.createPool({
+          host:DATABASE_HOST,
+          port:DATABASE_PORT,
+          user:DATABASE_USER,
+          password: DATABASE_PASSWORD,
+          database: DATABASE_NAME,
+          timezone: "Z",
+          connectionLimit: 10,
+      });        
   }
-
-  /** Una vez tenemos el pool, lo retornamos para poder hacerle consultas. Él se encargará automáticamente de abrir y cerrar conexiones con la DB, según sea necesario */
-  return pool
-}
+  return pool;      
+};
 
 module.exports = getPool
