@@ -27,8 +27,11 @@ const {validateAuth} = require('./middlewares')
 const app = express();
 app.use(cors({origin:["http://localhost:3000", "www.mi-otro-frontend.com"]}));
 
-app.use(fileUpload())
-app.use(express.json())
+
+app.use(fileUpload());
+app.use(express.json());
+app.use(express.static("uploads"));
+
 
 app.get('/photos', getPhotos)
 app.get("/photos/:photoId", getPhotoById);
