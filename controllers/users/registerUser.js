@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt')
+const {uploadImage} = require('../../helpers')
 const generateError = require('../../helpers/generateError')
 const {insertUser, selectUserByEmail} = require('../../repositories/users')
 const {registerUserSchema} = require('../../schemas')
@@ -11,14 +12,20 @@ const registerUser = async (req, res, next) => {
     if (userWithSameEmail) {
       throw generateError('Already exists  an user with the same email')
     }
+    let avatarName = null
+    if (req.files?.avatar) {
+      let {avatar} = req.files
+      avatarName = await uploadImage(avatar?.data)
+    }
     const encryptedPassword = await bcrypt.hash(passwd, 10)
     const insertId = await insertUser({
       username,
       email,
+      avatarName,
       encryptedPassword,
     })
     console.log(insertId)
-    res.status(201).send({status: 'ok', data: {id: insertId}})
+    res.status(201).send({status: 'ok', data: {id: insertId, avatarName}})
   } catch (error) {
     next(error)
   }

@@ -5,7 +5,8 @@ const idUserSchema = require('../../schemas/users/idUserSchema')
 
 const editUser = async (req, res, next) => {
   try {
-    const {idUser} = req.params
+    const idUser = req.auth.id
+    console.log(idUser)
     const userDB = await selectUserById(idUser)
     if (!userDB) {
       throw generateError('User doesn´t exists', 400)

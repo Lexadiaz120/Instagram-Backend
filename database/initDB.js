@@ -13,7 +13,7 @@ const initDB = async () => {
       id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
       username VARCHAR(100) NOT NULL,
       email VARCHAR(100) NOT NULL, 
-      avatar VARCHAR(100) DEFAULT "avatar.png", 
+      avatar VARCHAR(100) NULL, 
       passwd VARCHAR(100) NOT NULL
     );
 `)

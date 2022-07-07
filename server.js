@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors')
 const fileUpload = require('express-fileupload')
 const createComment = require('./controllers/comments/createComment')
 const getCommentById = require('./controllers/comments/getCommentById')
@@ -14,16 +15,25 @@ const {
 const {
   registerUser,
   loginUser,
-  getUserProfileById,
+  getUserGalleryImages,
 } = require('./controllers/users')
 const editUser = require('./controllers/users/editUser')
 const {generateError} = require('./helpers')
-const {validateAuth} = require('./middlewares')
+const {validateAuth, handleError} = require('./middlewares')
+const getUserInfo = require('./controllers/users/getUserInfo')
+const {validate} = require('./schemas/photos/createPhotoSchema')
 const app = express()
 app.use(fileUpload())
+app.use(express.static('uploads'))
 app.use(express.json())
+app.use(
+  cors({
+    origin: ['http://localhost:3000'],
+  })
+)
 app.get('/photos', getPhotos)
-app.get('/userprofile/:id', getUserProfileById)
+app.get('/userProfile/:userId', getUserGalleryImages)
+app.get('/profile', validateAuth, getUserInfo)
 app.get('/feed', selectLastPublications)
 app.post('/likephoto/:photo_id', validateAuth, Like)
 app.post('/posts', validateAuth, createPhotos)
@@ -32,17 +42,10 @@ app.post('/newuser', registerUser)
 app.get('/comments', getComments)
 app.get('/comments/:commentId', getCommentById)
 app.post('/comments/:photoId', validateAuth, createComment)
-app.patch('/users/:idUser', validateAuth, editUser)
-app.use((req, res, next) => {
-  throw generateError(
-    'This route is not correct, o method of your route is not a correct , please check all you data carefully'
-  )
-})
-app.use((error, req, res, next) => {
-  console.error(error)
-  res.statusCode = error.statusCode || 500
-  res.send({status: 'error', message: error.message})
-})
+app.patch('/editprofile', validateAuth, editUser)
+
+app.use(handleError)
+
 app.listen(5000, () => {
   console.log(`Server listening on http://localhost:${5000}`)
 })
