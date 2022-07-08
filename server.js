@@ -5,7 +5,10 @@ const createComment = require('./controllers/comments/createComment');
 const getCommentById = require('./controllers/comments/getCommentById');
 const getComments = require('./controllers/comments/getComments');
 const getCommentByPhotoId = require('./controllers/comments/getCommentsByPhotoId');
-const removeCommentById = require('./controllers/comments/removeCommentById')
+const removeCommentById = require('./controllers/comments/removeCommentById');
+
+const getLikesByPhotoId = require('./controllers/likes/getLikesByPhotoId');
+
 const {Like} = require('./controllers/likes')
 require('dotenv').config()
 const {
@@ -55,7 +58,7 @@ app.post('/comments/:photoId', validateAuth, createComment);
 
 /* Likes */
 app.post('/likephoto/:photo_id', validateAuth, Like);
-app.get('./photoLikes/:photoId', )
+app.get('/photoLikes/:photoId', getLikesByPhotoId);
 
 app.use(handleError)
 
