@@ -4,7 +4,7 @@ const selectCommentById = async (commentId) => {
   const pool = getPool()
 
   const [[comment]] = await pool.query(
-    'SELECT * FROM comments WHERE comments_id = ?',
+    `SELECT * FROM comments WHERE comments_id = ?`,
     [commentId]
   )
 
