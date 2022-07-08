@@ -14,4 +14,4 @@ const selectCommentById = async (photoId) => {
   return commentPhoto
 }
 
-module.exports = selectCommentById
+module.exports = selectCommentById;
