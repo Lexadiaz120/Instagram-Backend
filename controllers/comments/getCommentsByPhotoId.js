@@ -9,6 +9,7 @@ const getCommentByPhotoId = async (req, res, next) => {
       generateError('Comment does not exists', 404)
     }
     res.status(200).send({status: 'ok', data: commentPhoto})
+    
   } catch (error) {
     next(error)
   }

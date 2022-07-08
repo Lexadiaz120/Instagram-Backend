@@ -1,11 +1,12 @@
 const express = require('express')
 const cors = require('cors')
 const fileUpload = require('express-fileupload')
+const getCommentById = require('./controllers/comments/getCommentById');
+const getComments = require('./controllers/comments/getComments');
+const getCommentByPhotoId = require('./controllers/comments/getCommentsByPhotoId');
+const removeCommentById = require('./controllers/comments/removeCommentById');
+const getLikesByPhotoId = require('./controllers/likes/getLikesByPhotoId');
 const createComment = require('./controllers/comments/createComment')
-const getCommentById = require('./controllers/comments/getCommentById')
-const getComments = require('./controllers/comments/getComments')
-const getCommentByPhotoId = require('./controllers/comments/getCommentsByPhotoId')
-const removeCommentById = require('./controllers/comments/removeCommentById')
 const {Like} = require('./controllers/likes')
 require('dotenv').config()
 const {
@@ -44,8 +45,14 @@ app.post('/login', loginUser)
 app.post('/newuser', registerUser)
 app.patch('/editprofile', validateAuth, editUser)
 /* Comments */
+app.get('/comments/:commentId', getCommentById);
+app.post('/comments/:photoId', validateAuth, createComment);
+
+/* Likes */
+app.post('/likephoto/:photo_id', validateAuth, Like);
+app.get('/photoLikes/:photoId', getLikesByPhotoId);
+
 app.get('/comments', getComments)
-app.get('/comments/:commentId', getCommentById)
 app.get('/photoComments/:photoId', getCommentByPhotoId)
 app.post('/comments/:photoId', validateAuth, createComment)
 /* Likes */
