@@ -35,14 +35,23 @@ app.get('/photos', getPhotos)
 app.get('/userProfile/:userId', getUserGalleryImages)
 app.get('/profile', validateAuth, getUserInfo)
 app.get('/feed', selectLastPublications)
-app.post('/likephoto/:photo_id', validateAuth, Like)
+
 app.post('/posts', validateAuth, createPhotos)
 app.post('/login', loginUser)
 app.post('/newuser', registerUser)
-app.get('/comments', getComments)
-app.get('/comments/:commentId', getCommentById)
-app.post('/comments/:photoId', validateAuth, createComment)
-app.patch('/editprofile', validateAuth, editUser)
+
+
+app.patch('/editprofile', validateAuth, editUser);
+
+/* Comments */
+app.get('/comments', getComments);
+app.get('/comments/:commentId', getCommentById);
+app.post('/comments/:photoId', validateAuth, createComment);
+
+/* Likes */
+
+app.post('/likephoto/:photo_id', validateAuth, Like)
+
 
 app.use(handleError)
 
