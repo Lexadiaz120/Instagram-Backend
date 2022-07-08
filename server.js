@@ -53,11 +53,9 @@ app.get('/comments/:commentId', getCommentById);
 app.get('/photoComments/:photoId', getCommentByPhotoId);
 app.post('/comments/:photoId', validateAuth, createComment);
 
-
 /* Likes */
-
 app.post('/likephoto/:photo_id', validateAuth, Like);
-
+app.get('./photoLikes/:photoId', )
 
 app.use(handleError)
 
