@@ -1,9 +1,10 @@
 const express = require('express')
 const cors = require('cors')
 const fileUpload = require('express-fileupload')
-const createComment = require('./controllers/comments/createComment')
-const getCommentById = require('./controllers/comments/getCommentById')
-const getComments = require('./controllers/comments/getComments')
+const createComment = require('./controllers/comments/createComment');
+const getCommentById = require('./controllers/comments/getCommentById');
+const getComments = require('./controllers/comments/getComments');
+const getCommentByPhotoId = require('./controllers/comments/getCommentsByPhotoId');
 const removeCommentById = require('./controllers/comments/removeCommentById')
 const {Like} = require('./controllers/likes')
 require('dotenv').config()
@@ -11,17 +12,20 @@ const {
   createPhotos,
   selectLastPublications,
   getPhotos,
-} = require('./controllers/photos')
+} = require('./controllers/photos');
+
 const {
   registerUser,
   loginUser,
   getUserGalleryImages,
-} = require('./controllers/users')
+} = require('./controllers/users');
+
 const editUser = require('./controllers/users/editUser')
 const {generateError} = require('./helpers')
 const {validateAuth, handleError} = require('./middlewares')
 const getUserInfo = require('./controllers/users/getUserInfo')
 const {validate} = require('./schemas/photos/createPhotoSchema')
+
 const app = express()
 app.use(fileUpload())
 app.use(express.static('uploads'))
@@ -35,14 +39,25 @@ app.get('/photos', getPhotos)
 app.get('/userProfile/:userId', getUserGalleryImages)
 app.get('/profile', validateAuth, getUserInfo)
 app.get('/feed', selectLastPublications)
-app.post('/likephoto/:photo_id', validateAuth, Like)
+
 app.post('/posts', validateAuth, createPhotos)
 app.post('/login', loginUser)
 app.post('/newuser', registerUser)
-app.get('/comments', getComments)
-app.get('/comments/:commentId', getCommentById)
-app.post('/comments/:photoId', validateAuth, createComment)
-app.patch('/editprofile', validateAuth, editUser)
+
+
+app.patch('/editprofile', validateAuth, editUser);
+
+/* Comments */
+app.get('/comments', getComments);
+app.get('/comments/:commentId', getCommentById);
+app.get('/photoComments/:photoId', getCommentByPhotoId);
+app.post('/comments/:photoId', validateAuth, createComment);
+
+
+/* Likes */
+
+app.post('/likephoto/:photo_id', validateAuth, Like);
+
 
 app.use(handleError)
 
