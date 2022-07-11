@@ -44,6 +44,7 @@ photos
 users
 - id 
 - username
+- avatar
 - email
 - passwd
 
@@ -56,6 +57,7 @@ Req.query:
 Get |    /userprofile/:id User profile with photo gallery
 Req.params: 
 - id 
+Get |  /profile Get user profile   Requieres authorization, you need to make /login 
 Get | /feed View last publications posted by other users
 -View last publications
 Use req.params
@@ -67,12 +69,19 @@ Body (JSON):
 - description_photo
 Form data 
 - foto 
+ GET  /photoLikes/:photoId  
+ Req.params: photoId
 Post| /login   Log in.   
 - Log in user 
 Body (JSON): 
 - email 
 - passwd
 Returns JWT token
+GET /photoComments/:photoId'
+Req.params : photoId 
+Get /photoLikes/:photoId' Count Likes of Photo 
+Req.params: 
+photoId  
 post|  /newuser Registrate new user
 Body (JSON): 
 - username
