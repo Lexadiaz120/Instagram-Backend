@@ -12,7 +12,7 @@ const registerUser = async (req, res, next) => {
     if (userWithSameEmail) {
       throw generateError('Already exists  an user with the same email')
     }
-    let avatarName = null
+    let avatarName = ''
     if (req.files?.avatar) {
       let {avatar} = req.files
       avatarName = await uploadImage(avatar?.data)
