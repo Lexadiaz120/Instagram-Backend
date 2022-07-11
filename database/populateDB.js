@@ -8,8 +8,8 @@ const populateDB = async () => {
 
     await pool.query(
       `INSERT INTO users(username, email, passwd, avatar) VALUES 
-            ("BATMENT", "musoratogeludi@gmail.com", 1324657, "12521512.jpg"), 
-            ("SPIDERMAN", "ilikeflyes@gmail.com", 798465, "532532.jpg");
+            ("BATMENT", "musoratogeludi@gmail.com", 1324657, "0dc87ba7-f333-4648-8618-d2e5f3409d7a.jpeg"), 
+            ("SPIDERMAN", "ilikeflyes@gmail.com", 798465, "03eca1d9-83da-41ed-be5f-fd05617e9521.jpeg");
         `
     )
 
@@ -17,8 +17,8 @@ const populateDB = async () => {
 
     await pool.query(
       `INSERT INTO photo(name_photo, description_photo, user_id) VALUES 
-            ("FirstOne", "Lorem ipsum12", 1), 
-            ("SecondOne", "Lorem ipsum21", 2);
+            ("03eca1d9-83da-41ed-be5f-fd05617e9521.jpeg", "Lorem ipsum12", 1), 
+            ("03eca1d9-83da-41ed-be5f-fd05617e9521.jpeg", "Lorem ipsum21", 2);
         `
     )
 
