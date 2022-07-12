@@ -60,6 +60,6 @@ app.post('/comments/:photoId', validateAuth, createComment)
 /* Likes */
 app.post('/likephoto/:photo_id', validateAuth, Like)
 app.use(handleError)
-app.listen(5000, () => {
+app.listen(`${process.env.PORT}`, () => {
   console.log(`Server listening on http://localhost:${5000}`)
 })
