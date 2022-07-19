@@ -27,6 +27,7 @@ const {validateAuth, handleError} = require('./middlewares')
 const getUserInfo = require('./controllers/users/getUserInfo')
 const {validate} = require('./schemas/photos/createPhotoSchema')
 const getPhotoById = require('./controllers/photos/getPhotoById')
+const checkUserLike = require('./repositories/likes/checkUserLike')
 
 const app = express()
 app.use(fileUpload())
@@ -59,7 +60,8 @@ app.get('/photoComments/:photoId', getCommentByPhotoId)
 app.post('/comments/:photoId', validateAuth, createComment)
 /* Likes */
 app.post('/likephoto/:photo_id', validateAuth, Like)
+app.get('/likes/:photo_id/checkLike', validateAuth, checkUserLike)
 app.use(handleError)
-app.listen(5000, () => {
+app.listen(`${process.env.PORT}`, () => {
   console.log(`Server listening on http://localhost:${5000}`)
 })
