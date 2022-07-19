@@ -12,15 +12,22 @@ const Like = async (req, res, next) => {
 
     if (photo) {
       await deleteLike(photo_id, user_id)
-      res.status(200).send({status: 'ok', message: 'Like deleted succesfully'})
+      res
+        .status(200)
+        .send({
+          status: 'ok',
+          message: 'Like deleted succesfully',
+          result: false,
+        })
       return
     }
 
     await insertLikes({user_id, photo_id})
-    
+
     res.status(201).send({
       status: 'ok',
       message: 'Like created succesfully',
+      result: true,
     })
   } catch (error) {
     next(error)
