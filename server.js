@@ -31,7 +31,7 @@ const checkUserLike = require('./repositories/likes/checkUserLike')
 
 const app = express()
 
-const { SERVER_PORT } = process.env;
+const {PORT} = process.env
 
 app.use(fileUpload())
 app.use(express.static('uploads'))
@@ -63,6 +63,6 @@ app.get('/photoLikes/:photoId', getLikesByPhotoId)
 app.get('/likes/:photo_id/checkLike', validateAuth, checkUserLike)
 
 app.use(handleError)
-app.listen(`${process.env.PORT}`, () => {
+app.listen(`${PORT}`, () => {
   console.log(`Server listening on http://localhost:${process.env.PORT}`)
 })
