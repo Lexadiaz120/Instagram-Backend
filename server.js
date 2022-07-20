@@ -30,6 +30,9 @@ const getPhotoById = require('./controllers/photos/getPhotoById')
 const checkUserLike = require('./repositories/likes/checkUserLike')
 
 const app = express()
+
+const { SERVER_PORT } = process.env;
+
 app.use(fileUpload())
 app.use(express.static('uploads'))
 app.use(express.json())
@@ -47,21 +50,20 @@ app.post('/posts', validateAuth, createPhotos)
 app.post('/login', loginUser)
 app.post('/newuser', registerUser)
 app.patch('/editprofile', validateAuth, editUser)
+
 /* Comments */
 app.get('/comments/:commentId', getCommentById)
 app.post('/comments/:photoId', validateAuth, createComment)
+app.get('/comments', getComments)
+app.get('/photoComments/:photoId', getCommentByPhotoId)
 
 /* Likes */
 app.post('/likephoto/:photo_id', validateAuth, Like)
 app.get('/photoLikes/:photoId', getLikesByPhotoId)
-
-app.get('/comments', getComments)
-app.get('/photoComments/:photoId', getCommentByPhotoId)
-app.post('/comments/:photoId', validateAuth, createComment)
-/* Likes */
-app.post('/likephoto/:photo_id', validateAuth, Like)
 app.get('/likes/:photo_id/checkLike', validateAuth, checkUserLike)
+
 app.use(handleError)
-app.listen(`${process.env.PORT}`, () => {
-  console.log(`Server listening on http://localhost:${5000}`)
+
+app.listen(SERVER_PORT, () => {
+  console.log(`Server listening on http://localhost:${SERVER_PORT}`)
 })
