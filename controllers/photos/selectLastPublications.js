@@ -4,7 +4,7 @@ const selectLastPublications = async (req, res) => {
   try {
     const pool = getPool()
     const [photo] = await pool.query(
-      'SELECT ph.name_photo, ph.description_photo, u.username, ph.id FROM photo ph INNER JOIN users u ON ph.user_id = u.id ORDER BY ph.created_at DESC;'
+      'SELECT ph.name_photo, ph.description_photo, u.username, u.id FROM photo ph INNER JOIN users u ON ph.user_id = u.id ORDER BY ph.created_at DESC;'
     )
     res.status(200).send({status: 'ok', data: photo})
   } catch (error) {
