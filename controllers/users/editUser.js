@@ -18,7 +18,7 @@ const editUser = async (req, res, next) => {
     const userId = req.auth.id
     if (userDB.id !== userId) {
       throw generateError("You cant update someone else's entry", 400)
-    }
+    }    
     await updateUserById({...userDB, ...req.body, avatar})
     res.status(200).send({status: 'ok', message: 'User updated'})
   } catch (error) {
