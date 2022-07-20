@@ -63,5 +63,5 @@ app.post('/likephoto/:photo_id', validateAuth, Like)
 app.get('/likes/:photo_id/checkLike', validateAuth, checkUserLike)
 app.use(handleError)
 app.listen(`${process.env.PORT}`, () => {
-  console.log(`Server listening on http://localhost:${5000}`)
+  console.log(`Server listening on http://localhost:${process.env.PORT}`)
 })
