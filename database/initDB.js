@@ -5,9 +5,9 @@ const initDB = async () => {
   try {
     const pool = getPool()
     await pool.query('SET GLOBAL FOREIGN_KEY_CHECKS=0;')
-    await pool.query('DROP TABLE IF EXISTS users;')
-    await pool.query('DROP TABLE IF EXISTS photo;')
     await pool.query('DROP TABLE IF EXISTS likes;')
+    await pool.query('DROP TABLE IF EXISTS photo;')
+    await pool.query('DROP TABLE IF EXISTS users;')
     await pool.query(`
     CREATE TABLE IF NOT EXISTS users(
       id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,

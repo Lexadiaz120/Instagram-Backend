@@ -8,6 +8,7 @@ const editUser = async (req, res, next) => {
   try {
     const idUser = req.auth.id
     const userDB = await selectUserById(idUser)
+    const {username} = req.body
     let {avatar} = req.files
     avatar = await uploadImage(avatar?.data)
     if (!userDB) {
@@ -18,7 +19,14 @@ const editUser = async (req, res, next) => {
       throw generateError("You cant update someone else's entry", 400)
     }
     await updateUserById({...userDB, ...req.body, avatar}, req)
-    res.status(200).send({status: 'ok', message: 'User updated'})
+    res
+      .status(200)
+      .send({
+        status: 'ok',
+        message: 'User updated',
+        avatar: avatar,
+        username: username,
+      })
   } catch (error) {
     next(error)
   }
