@@ -41,7 +41,7 @@ const initDB = async () => {
     await pool.query(`
     CREATE TABLE IF NOT EXISTS comments(
       comments_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-      comments VARCHAR(300) NOT NULL,
+      comment VARCHAR(300) NOT NULL,
       user_id INT UNSIGNED,
       photo_id INT UNSIGNED,
       FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,

@@ -15,11 +15,11 @@ const getPool = () => {
   /** Si no hay un pool ya creado, llamamos a createPool con los datos requeridos para crear uno */
   if (!pool) {
     pool = mysql?.createPool({
-      host: DATABASE_HOST,
-      port: DATABASE_PORT,
-      user: DATABASE_USER,
-      password: DATABASE_PASSWORD,
-      database: DATABASE_NAME,
+      host: 'localhost',
+      port: '3306',
+      user: 'root',
+      password: 'Motinmotin120$',
+      database: 'instagram_app',
       timezone: 'Z',
       connectionLimit: 10,
     })

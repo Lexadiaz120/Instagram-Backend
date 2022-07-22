@@ -32,7 +32,7 @@ const populateDB = async () => {
     console.log('Insertando datos en tabla en comments...')
 
     await pool.query(
-      `INSERT INTO comments(comments, user_id, photo_id) VALUES
+      `INSERT INTO comments(comment, user_id, photo_id) VALUES
                 ("This is awesome photo", 1, 2), 
                 ("I like it", 2, 1), 
                 ("Lorem ipsum mit emet...", 1, 2);
