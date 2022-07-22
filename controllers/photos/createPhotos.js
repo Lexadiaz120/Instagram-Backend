@@ -26,6 +26,7 @@ const createPhotos = async (req, res, next) => {
         description_photo,
         user_id,
         username: user.username,
+        avatar: user.avatar,
       },
     })
   } catch (error) {
